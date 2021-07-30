@@ -20,4 +20,20 @@ prods = [
     Product('cloth', 2100),
     Product('shoe', 1100)]
 
-print(Filter().filter_by_type(prods, 'cloth'))
+for p in Filter().filter_by_type(prods, 'shoe'):
+    print(p)
+
+# Obeys OCP
+class GoodFilter:
+    def filter(self, items):
+        pass
+
+
+class FilterByType(GoodFilter):
+    def filter(self, items, p_type):
+        for item in items:
+            if item.p_type == p_type:
+                yield item
+
+for p in FilterByType().filter(prods, 'cloth'):
+    print(p)
