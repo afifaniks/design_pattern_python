@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 
-class SendEmail(metaclass=ABCMeta):
+class EmailSender(metaclass=ABCMeta):
     @abstractmethod
     def verify_email(self, email_from, email_to):
         pass
@@ -20,7 +20,7 @@ class SendEmail(metaclass=ABCMeta):
         self.send(email_from, email_to, body)
 
 
-class GmailSender(SendEmail):
+class GmailSender(EmailSender):
     def verify_email(self, email_from, email_to):
         print("Email Verified")
 
@@ -31,7 +31,7 @@ class GmailSender(SendEmail):
         print("Sending ...")
 
 
-class YmailSender(SendEmail):
+class YmailSender(EmailSender):
     def verify_email(self, email_from, email_to):
         print("Y Email Verified")
 
